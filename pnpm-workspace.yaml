@@ -1,0 +1,16 @@
+# pnpm workspace configuration
+# pnpm 10+ requires these settings here instead of package.json["pnpm"].
+# See: https://pnpm.io/settings
+
+packages:
+  - "."
+
+patchedDependencies:
+  wouter@3.7.1: patches/wouter@3.7.1.patch
+
+overrides:
+  "tailwindcss>nanoid": "3.3.7"
+
+onlyBuiltDependencies:
+  - "@tailwindcss/oxide"
+  - esbuild
