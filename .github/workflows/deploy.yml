@@ -22,20 +22,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'pnpm'
 
       - name: Install Dependencies
-        run: npm install --legacy-peer-deps
+        run: pnpm install --frozen-lockfile
 
-      - name: Build Website
-        run: |
-          npm run build
-          cp dist/public/index.html dist/public/404.html
+      - name: Build Client (static only)
+        run: pnpm exec vite build
         env:
           NODE_ENV: production
+
+      - name: Add 404 fallback
+        run: cp dist/public/index.html dist/public/404.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

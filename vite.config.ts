@@ -206,7 +206,7 @@ function vitePluginStorageProxy(): Plugin {
 const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), vitePluginStorageProxy()];
 
 export default defineConfig({
-  base: process.env.NODE_ENV === "production" ? "/epoch1.0/" : "/",
+  base: process.env.NODE_ENV === "production" ? "/Epoch-1.0-main-/" : "/",
   plugins,
   resolve: {
     alias: {
